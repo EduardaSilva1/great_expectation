@@ -1,0 +1,15 @@
+import pandas as pd
+import great_expectations as ge
+from great_expectations.data_context import get_context
+
+# Inicializar o contexto usando get_context com o caminho do diretório
+context = get_context("C:\\Users\\eduarda.silva_cortex\\Documents\\great_expectation")
+
+# Configurar caminho e carregar dados
+data_path = 'C:\\Users\\eduarda.silva_cortex\\Documents\\mercado\\outubro_enriquecimento_cnpj_br_baby_kids_cnpj.xlsx'
+df = ge.read_excel(data_path)
+expectation_suite_name = "outubro_enriquecimento_suite"
+
+# Criar o conjunto de expectativas se não existir
+if not context.list_expectation_suites():
+    context.create_expectation_suite(expectation_suite_name, overwrite_existing=True)
